@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="center_panel">
+    <div style="margin: 20px;">
+        <h1>Главная страница</h1>
+        <div>
+
+            <a href={% url 'updated' %}>update photo</a>
+        </div>
+        
+            {% for k, photos in dict_photo.items %}
+            <div style="text-align: center;"> 
+
+                <h1>{{ k }}</h1>
+            </div>
+                <div>
+
+                    {% for photo in photos %}
+                        {% if photo %}
+                            <img class="img-article-left" width="150px" src="{{photo.img.url}} " onclick="changeSizeImage(this)"
+                            style="border-radius: 10px;  height:150px;object-fit:cover;
+                            cursor: pointer;">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+    </div>
+</div>
+<script>
+    var bigsize = "750"; // Размер большой картинки
+    var smallsize = "150"; // Размер маленькой картинки
+    function changeSizeImage(im) {
+    if(im.width == bigsize) {
+        im.width = smallsize;
+        im.style.height = '150px';
+    }
+    else 
+    {
+        im.width = bigsize;
+        im.style.height = '100%';
+    }
+    }
+    </script>
+{% endblock %}

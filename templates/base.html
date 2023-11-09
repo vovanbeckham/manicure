@@ -1,0 +1,41 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <title>Мой сайт</title>
+    <link type="text/css" href="{% static 'manicure/css/style.css' %}" rel="stylesheet" />
+</head>
+<body>
+    <div class="fon">
+
+    </div>
+    <div class="left_panel">
+        <div class="menu">
+
+            <div>
+    
+                {{ context.menu }}
+            </div>
+            <div>
+    
+                {{ context.about }}
+            </div>
+            <div>
+    
+                {{ context.list }}
+            </div>
+            <div>
+    
+                {{ context.news }}
+            </div>
+        </div>
+    </div>
+    
+    {% block content %} {% endblock %}
+    <div class="right_panel">
+
+    </div>
+</body>
+</html>
