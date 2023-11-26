@@ -8,6 +8,10 @@
 
             <a href={% url 'updated' %}>update photo</a>
         </div>
+        <div>
+
+            <a href={% url 'add_cat' %}>add category</a>
+        </div>
         
             {% for k, photos in dict_photo.items %}
             <div style="text-align: center;"> 

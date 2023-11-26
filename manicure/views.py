@@ -2,12 +2,13 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from manicure.models import Album, Category
 
-from manicure.form import UploadFileForm
+from manicure.form import AddCat, UploadFileForm
 
 
 
 def index(request):
     context = {
+        'main': 'Главная страница',
         'menu': 'Меню',
         'about': 'О сайте',
         'list' : 'Список',
@@ -25,19 +26,38 @@ def index(request):
 
 def upload(request):
     context = {
+        'main': 'Главная страница',
         'menu': 'Меню',
         'about': 'О сайте',
         'list' : 'Список',
         'news' : 'Новости',
     }
+    form = UploadFileForm()
     if request.POST:
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
-            fp = Album(img=form.cleaned_data['img'])
-            c = Category.objects.get(pk=2)
-            fp.cat = c
-            fp.save()
-    else:
-        form = UploadFileForm()
+            #fp = Album(img=form.cleaned_data['img'])
+            #c = Category.objects.get(pk=2)
+            #fp.cat = c
+            #fp.save()
+            form.save()
     
     return render(request, 'manicure/upload.html', locals())
+
+
+def add_cat(request):
+    context = {
+        'main': 'Главная страница',
+        'menu': 'Меню',
+        'about': 'О сайте',
+        'list' : 'Список',
+        'news' : 'Новости',
+    }
+    form = AddCat()
+    if request.POST:
+        form = AddCat(request.POST)
+        if form.is_valid():
+            form.save()
+
+    
+    return render(request, 'manicure/add_category.html', locals())
